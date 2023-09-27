@@ -1,0 +1,5 @@
+comment = 'hamming:  Created by pgrx'
+default_version = '@CARGO_VERSION@'
+module_pathname = '$libdir/hamming'
+relocatable = false
+superuser = true
