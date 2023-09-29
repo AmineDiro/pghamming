@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  master:
+    container_name: citus
+    image: citusdata/citus
+    ports: 5500:5432
+    environment:
+    volumes:
+      - 
