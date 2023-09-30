@@ -1,7 +1,8 @@
 use hamming::{distance, distance_fast};
 use pgrx::prelude::*;
 
-#[pg_extern]
+#[pg_operator(immutable, parallel_safe)]
+#[opname(<#>)]
 pub(crate) fn hamming_distance(x: &[u8], y: &[u8]) -> i64 {
     match distance_fast(x, y) {
         Ok(d) => d as i64,

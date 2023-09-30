@@ -61,3 +61,23 @@ select
 from
     pages p1,
     pages p2;
+
+--- 
+--- Operator
+---- 
+
+with query as (
+    select
+        uuid,
+        hash
+    from
+        pages
+    limit
+        1
+)
+select
+    pages.uuid,
+    hamming_distance(query.hash, pages.hash) as distance
+from
+    pages,
+    query
