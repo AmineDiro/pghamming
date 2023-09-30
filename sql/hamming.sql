@@ -8,9 +8,7 @@ CREATE EXTENSION hamming;
 --- CREATE test table
 ---
 DROP TABLE pages CASCADE;
-
 CREATE TABLE IF NOT EXISTS pages (uuid UUID, hash bytea);
-
 INSERT INTO
     pages (uuid, hash)
 SELECT
@@ -23,7 +21,7 @@ SELECT
         )
     ) :: bytea AS hash
 FROM
-    generate_series(1, 1000000);
+    generate_series(1, 100);
 
 --- 
 --- Queries using hamming distance
@@ -77,7 +75,7 @@ with query as (
 )
 select
     pages.uuid,
-    hamming_distance(query.hash, pages.hash) as distance
+    query.hash <#> pages.hash as distance
 from
     pages,
     query

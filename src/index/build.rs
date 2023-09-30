@@ -1,12 +1,16 @@
 use pgrx::prelude::*;
 
 #[pg_guard]
-pub(crate) extern "C" fn am_build(
+pub(crate) unsafe extern "C" fn am_build(
     heap_relation: pg_sys::Relation,
     index_relation: pg_sys::Relation,
     index_info: *mut pg_sys::IndexInfo,
 ) -> *mut pg_sys::IndexBuildResult {
-    unimplemented!()
+    // index_build::build(index_relation, Some((heap_relation, index_info)));
+    let mut result = pgrx::PgBox::<pgrx::pg_sys::IndexBuildResult>::alloc0();
+    result.heap_tuples = 0.0;
+    result.index_tuples = 0.0;
+    result.into_pg()
 }
 
 #[pg_guard]
