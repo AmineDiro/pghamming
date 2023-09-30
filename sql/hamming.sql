@@ -2,7 +2,6 @@
 --- CREATE Extension
 ---
 DROP EXTENSION hamming;
-
 CREATE EXTENSION hamming;
 
 --- 
