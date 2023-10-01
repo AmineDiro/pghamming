@@ -79,3 +79,6 @@ select
 from
     pages,
     query
+
+--- IVF Index creation
+CREATE INDEX phash_hnsw_idx ON pages USING ivf(hash);
