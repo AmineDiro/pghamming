@@ -7,7 +7,7 @@ import asyncpg
 import numpy as np
 from pgvector.asyncpg import register_vector
 
-N_BYTES = 8
+N_BYTES = 32
 N_ROW = 1_000_000
 
 
@@ -46,11 +46,11 @@ async def main():
     await register_vector(conn)
 
     await conn.execute(
-        """
+        f"""
         DROP TABLE IF EXISTS  images;
         CREATE TABLE images(
             id  UUID PRIMARY KEY,
-            phash vector(64)
+            phash vector({N_BYTES*8})
         )
     """
     )
