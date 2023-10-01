@@ -1,7 +1,7 @@
 --- 
 --- CREATE Extension
 ---
-DROP EXTENSION hamming;
+DROP EXTENSION hamming CASCADE;
 CREATE EXTENSION hamming;
 
 --- 
@@ -9,6 +9,7 @@ CREATE EXTENSION hamming;
 ---
 DROP TABLE pages CASCADE;
 CREATE TABLE IF NOT EXISTS pages (uuid UUID, hash bytea);
+
 INSERT INTO
     pages (uuid, hash)
 SELECT
